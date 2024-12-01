@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ */
+
 package com.mycompany.eva4_carillo_airlines1_equipo1;
 
 import java.util.Scanner;
@@ -88,7 +92,7 @@ public class EVA4_CARILLO_AIRLINES1_EQUIPO1 {
         public static String[] asiento;
         
     //PAYMENT VARIABLES
-    public static double PRECIOCLASE1 = 2000,PRECIOCLASE2=1000,PRECIOCLASE3=500;
+    public static double PRECIOCLASE1 = 2000,PRECIOCLASE2=1000,PRECIOCLASE3=500;//FIXED PRICE FOR EACH CLASS
             
     public static void main(String[] args) {
         //declare start menu
@@ -177,10 +181,7 @@ public class EVA4_CARILLO_AIRLINES1_EQUIPO1 {
             }else{
                 TIPOBOL2 = "Ida y vuelta";
             }
-           
-            
-            
-        return mensaje;
+           return mensaje;
     }
     public static String tomarLugOrg(String mensaje){
         while(true){
@@ -243,7 +244,7 @@ public class EVA4_CARILLO_AIRLINES1_EQUIPO1 {
             return -1;
     }
     
-    public static int tomarBoleto(String mensaje){//THIS METHOD IS FOR DESTINATIONSELECTION
+    public static int tomarBoleto(String mensaje){//THIS METHOD IS FOR DESTINATION SELECTION
         do{
             System.out.println(mensaje);
             System.out.println("1=Ida, 2=Ida y Vuelta");
@@ -264,6 +265,7 @@ public class EVA4_CARILLO_AIRLINES1_EQUIPO1 {
     //METHOD FOR USER2
     public static String capturaDatos(String mensaje){//THIS IS A METHOD TO ACESS USER1
         System.out.println(mensaje);
+        System.out.println("USER2:==========================ROL:TOMAR DATOS DEL PASAJERO");
         System.out.println("Cuantos pasajeros viajaran?");
         numps=cap.nextInt();
         cap.nextLine();
@@ -298,7 +300,8 @@ public class EVA4_CARILLO_AIRLINES1_EQUIPO1 {
     //METHOD FOR USER3
     public static String asignacionAsientos(String mensaje){
         System.out.println(mensaje);
-        if(CLASE==1){
+        if(CLASE==1){//DEPENDING ON THE CLASS THAT WAS INITIALLY CHOSEN, 
+                     //THE MATRIX OF THE SEATS AVAILABLE FOR THAT CLASS IS SHOWN
             primeraClase();
         }
         if(CLASE==2){
@@ -312,21 +315,21 @@ public class EVA4_CARILLO_AIRLINES1_EQUIPO1 {
         return mensaje;
     }
     public static void primeraClase(){
-        System.out.println("Los asientos para primera clase son:");
+        System.out.println("Los asientos para primera clase son:");//THIS IS A MATRIX FOR SHOW AVAILABLE SEATS FOR EACH CLASS
         for (int i = 0; i < PRIMCLAS.length; i++) {
             for (int j = 0; j < PRIMCLAS[i].length; j++) {
                 System.out.print("["+PRIMCLAS[i][j] + "]");
-                // Salto de línea cada 10 elementos
+                // Line break every 10 items to show seats
                 if ((j + 1) % 10 == 0) {
                     System.out.println();
                 }
             }
-            System.out.println(); // Salto de línea entre filas de la matriz
+            System.out.println(); // Line break between rows of the matrix
         }
         asiento = new String[numps];
         for (int numasi = 0; numasi < numps; numasi++) {
         while (true) {
-            System.out.println("Capture asiento para pasajero #" + (numasi + 1));
+            System.out.println("Capture asiento para pasajero #" + (numasi + 1));//CAPTURE THE SEATS IN ONE ARRANGEMENT
             asiento[numasi] = cap.nextLine();
             System.out.println("El asiento seleccionado para el pasajero #" + (numasi + 1) + " fue: " + asiento[numasi]);
             break;
@@ -340,12 +343,12 @@ public class EVA4_CARILLO_AIRLINES1_EQUIPO1 {
         for (int i = 0; i < EJECUTIV.length; i++) {
             for (int j = 0; j < EJECUTIV[i].length; j++) {
                 System.out.print("["+EJECUTIV[i][j] + "]");
-                // Salto de línea cada 10 elementos
+                // Line break every 10 items to show seats
                 if ((j + 1) % 10 == 0) {
                     System.out.println();
                 }
             }
-            System.out.println(); // Salto de línea entre filas de la matriz
+            System.out.println(); // Line break between rows of the matrix
         }
         asiento = new String[numps];
         for (int numasi = 0; numasi < numps; numasi++) {
@@ -362,12 +365,12 @@ public class EVA4_CARILLO_AIRLINES1_EQUIPO1 {
         for (int i = 0; i < TURISTA.length; i++) {
             for (int j = 0; j < TURISTA[i].length; j++) {
                 System.out.print("["+TURISTA[i][j] + "]");
-                // Salto de línea cada 10 elementos
+                // Line break every 10 items to show seats
                 if ((j + 1) % 10 == 0) {
                     System.out.println();
                 }
             }
-            System.out.println(); // Salto de línea entre filas de la matriz
+            System.out.println(); // Line break between rows of the matrix
         }asiento = new String[numps];
         for (int numasi = 0; numasi < numps; numasi++) {
         while (true) {
@@ -387,6 +390,8 @@ public class EVA4_CARILLO_AIRLINES1_EQUIPO1 {
         return mensaje;
     }
     public static void pedirTarjeta(){
+        //DEPENDING ON THE CHOSEN CLASS AND THE NUMBER OF PASSENGERS
+        //IT SHOWS HOW MUCH THE FLIGHTS WILL COST
         if(CLASE==1){
             System.out.println("El precio a cobrar es:"+PRECIOCLASE1*numps);
         }
@@ -396,7 +401,7 @@ public class EVA4_CARILLO_AIRLINES1_EQUIPO1 {
         if(CLASE==3){
             System.out.println("El precio a cobrar es:"+PRECIOCLASE3*numps);
         }
-         System.out.print("Numero de tarjeta: ");
+         System.out.print("Numero de tarjeta: ");//CAPTURES DATES FOR PAYMENT
         String NumeroT = cap.nextLine();   
         System.out.print("Nombre del titular: ");
         String Titular = cap.nextLine();
@@ -410,20 +415,20 @@ public class EVA4_CARILLO_AIRLINES1_EQUIPO1 {
         
         if(NumeroT.length() < 16 || Cvv.length() != 3) {
             System.out.println("Datos de la tarjeta inválidos. Por favor, intente nuevamente.");
-        }else{
+        }else{//IF DATES THE TARJET IS MINOR TO 16 IS INCORRECT
+            //IF DATES THE CVV IS MINOR TO 3 IS INCORRECT
             System.out.println("\nPago realizado exitosamente con tarjeta.");
             for (int i = NumeroT.length() - 4; i < NumeroT.length(); i++) {
                 ult4 += NumeroT.charAt(i);
             }
-        System.out.println("============PAGO============");
+        System.out.println("============PAGO============");//RETURN PAYMENT DETAILS
         System.out.println("Titular: " + Titular);
         System.out.println("Numero de tarjeta: **** **** **** " + ult4);
-        System.out.println("Nombre: " + Titular);
         System.out.println("============================");
         }
         mostrarBoleto();
     }
-    public static void mostrarBoleto(){
+    public static void mostrarBoleto(){//THIS METHOD RETURN TICKET DETAILS
         System.out.println("===========DATOS BOLETO============");
         System.out.print("Origen:" + ORIGEN + "- ");
         System.out.print("Destino:" + DESTINO + "- ");
@@ -432,9 +437,8 @@ public class EVA4_CARILLO_AIRLINES1_EQUIPO1 {
         System.out.print("Boleto(s):" + TIPOBOL2);
         System.out.println("");
         for (int i = 0; i < numps; i++) {
-        // Muestra los datos del pasajero con su asiento correspondiente.
-        System.out.println("Pasajero #" + (i + 1));
-        System.out.println("Nombre: " + DATOS[i]);
+        System.out.println("Pasajero # " + (i + 1));
+        System.out.println("Nombre: " + DATOS[1]);
         System.out.println("Asiento: " + asiento[i]);
     }
         System.out.println("====================================");
@@ -452,15 +456,18 @@ public class EVA4_CARILLO_AIRLINES1_EQUIPO1 {
         System.out.println("Tomar el metodo de pago-------->USER4");
         usu=cap.nextLine();
                     if (usu.equals("USER1")) {
-                    } else if (usu.equals("USER2")) { 
-                    } else if (usu.equals("USER3")) {  
-                    } else if (usu.equals("USER4")) {   
-                    } else if (usu.equals("USER5")) {    
+                       eleccionDestino("");
+                    } else if (usu.equals("USER2")) {
+                        capturaDatos("");
+                    } else if (usu.equals("USER3")) {
+                        asignacionAsientos("");
+                    } else if (usu.equals("USER4")) { 
+                        capturaDatosCobro("");
                     }
         System.out.println(mensaje);
         return mensaje;
          }
-    public static void mostrarUSU(){
+    public static void mostrarUSU(){//RETURN THE ROLS FOR EACH USER
         System.out.println("==============LISTA DE USUARIOS=============");
         System.out.println("USER1 : Tomar el viaje del pasajero ");
         System.out.println("USER2 : Tomar los datos del pasajero");
