@@ -1,8 +1,12 @@
-package carrillo_airlines;
+package com.mycompany.eva4_carillo_airlines1_equipo1;
 
 import java.util.Scanner;
 
-public class Carrillo_Airlines {
+/**
+ *
+ * @author jesus
+ */
+public class EVA4_CARILLO_AIRLINES1_EQUIPO1 {
     //GENERATE A GLOBAL SCANNER
     public final static Scanner cap = new Scanner(System.in);
     
@@ -39,7 +43,7 @@ public class Carrillo_Airlines {
     
     //SEAT ASSIGNAMENTS VARIABLES
         //MATRIX OF SEATS
-    public static String PRIMCLAS[][] = new String[2][12];
+    public static String PRIMCLAS[][] = new String[1][20];
     static {
         int asientosA = 1;
         for (int i = 0; i < PRIMCLAS.length; i++) {
@@ -53,7 +57,7 @@ public class Carrillo_Airlines {
             }
         }
     }
-    public static String EJECUTIV[][] = new String[4][16];
+    public static String EJECUTIV[][] = new String[3][20];
     static {
         int asientosB = 1;
         for(int i = 0; i < EJECUTIV.length; i++) {
@@ -67,7 +71,7 @@ public class Carrillo_Airlines {
             }
         }
     }
-    public static String TURISTA[][] = new String[4][23];
+    public static String TURISTA[][] = new String[3][30];
         static {
         int asientosC = 1;
         for(int i = 0; i < TURISTA.length; i++) {
@@ -81,9 +85,10 @@ public class Carrillo_Airlines {
             }
         }
     }
+        public static String[] asiento;
         
     //PAYMENT VARIABLES
-    public static double PRECIO = 1000;
+    public static double PRECIOCLASE1 = 2000,PRECIOCLASE2=1000,PRECIOCLASE3=500;
             
     public static void main(String[] args) {
         //declare start menu
@@ -172,17 +177,8 @@ public class Carrillo_Airlines {
             }else{
                 TIPOBOL2 = "Ida y vuelta";
             }
+           
             
-            
-             //PRINT THE COLLECTED DATA
-            System.out.println("============VIAJE============");
-            System.out.print("Origen:" + ORIGEN + "- ");
-            System.out.print("Destino:" + DESTINO + "- ");
-            System.out.println("Clase:" + CLASE2 + "- ");
-            System.out.print("Vuelo:" + TIPOVUEL2 + "- ");
-            System.out.print("Boleto(s):" + TIPOBOL2);
-            System.out.println("");
-            System.out.println("=============================");
             
         return mensaje;
     }
@@ -302,8 +298,86 @@ public class Carrillo_Airlines {
     //METHOD FOR USER3
     public static String asignacionAsientos(String mensaje){
         System.out.println(mensaje);
+        if(CLASE==1){
+            primeraClase();
+        }
+        if(CLASE==2){
+            claseEjecutiv();
+        }
+        if(CLASE==3){
+            claseTurista();
+        }
+        
         
         return mensaje;
+    }
+    public static void primeraClase(){
+        System.out.println("Los asientos para primera clase son:");
+        for (int i = 0; i < PRIMCLAS.length; i++) {
+            for (int j = 0; j < PRIMCLAS[i].length; j++) {
+                System.out.print("["+PRIMCLAS[i][j] + "]");
+                // Salto de línea cada 10 elementos
+                if ((j + 1) % 10 == 0) {
+                    System.out.println();
+                }
+            }
+            System.out.println(); // Salto de línea entre filas de la matriz
+        }
+        asiento = new String[numps];
+        for (int numasi = 0; numasi < numps; numasi++) {
+        while (true) {
+            System.out.println("Capture asiento para pasajero #" + (numasi + 1));
+            asiento[numasi] = cap.nextLine();
+            System.out.println("El asiento seleccionado para el pasajero #" + (numasi + 1) + " fue: " + asiento[numasi]);
+            break;
+        }
+    }
+        
+
+        
+    }
+    public static void claseEjecutiv(){
+        for (int i = 0; i < EJECUTIV.length; i++) {
+            for (int j = 0; j < EJECUTIV[i].length; j++) {
+                System.out.print("["+EJECUTIV[i][j] + "]");
+                // Salto de línea cada 10 elementos
+                if ((j + 1) % 10 == 0) {
+                    System.out.println();
+                }
+            }
+            System.out.println(); // Salto de línea entre filas de la matriz
+        }
+        asiento = new String[numps];
+        for (int numasi = 0; numasi < numps; numasi++) {
+        while (true) {
+            System.out.println("Capture asiento para pasajero #" + (numasi + 1));
+            asiento[numasi] = cap.nextLine();
+            System.out.println("El asiento seleccionado para el pasajero #" + (numasi + 1) + " fue: " + asiento[numasi]);
+            break;
+        }
+    }
+        
+    }
+    public static void claseTurista(){
+        for (int i = 0; i < TURISTA.length; i++) {
+            for (int j = 0; j < TURISTA[i].length; j++) {
+                System.out.print("["+TURISTA[i][j] + "]");
+                // Salto de línea cada 10 elementos
+                if ((j + 1) % 10 == 0) {
+                    System.out.println();
+                }
+            }
+            System.out.println(); // Salto de línea entre filas de la matriz
+        }asiento = new String[numps];
+        for (int numasi = 0; numasi < numps; numasi++) {
+        while (true) {
+            System.out.println("Capture asiento para pasajero #" + (numasi + 1));
+            asiento[numasi] = cap.nextLine();
+            System.out.println("El asiento seleccionado para el pasajero #" + (numasi + 1) + " fue: " + asiento[numasi]);
+            break;
+        }
+    }
+
     }
     //METHOD FOR USER4
     public static String capturaDatosCobro(String mensaje){
@@ -313,7 +387,16 @@ public class Carrillo_Airlines {
         return mensaje;
     }
     public static void pedirTarjeta(){
-        System.out.print("Numero de tarjeta: ");
+        if(CLASE==1){
+            System.out.println("El precio a cobrar es:"+PRECIOCLASE1*numps);
+        }
+        if(CLASE==2){
+            System.out.println("El precio a cobrar es:"+PRECIOCLASE2*numps);
+        }
+        if(CLASE==3){
+            System.out.println("El precio a cobrar es:"+PRECIOCLASE3*numps);
+        }
+         System.out.print("Numero de tarjeta: ");
         String NumeroT = cap.nextLine();   
         System.out.print("Nombre del titular: ");
         String Titular = cap.nextLine();
@@ -329,20 +412,35 @@ public class Carrillo_Airlines {
             System.out.println("Datos de la tarjeta inválidos. Por favor, intente nuevamente.");
         }else{
             System.out.println("\nPago realizado exitosamente con tarjeta.");
-            System.out.println("Titular: " + Titular);
             for (int i = NumeroT.length() - 4; i < NumeroT.length(); i++) {
                 ult4 += NumeroT.charAt(i);
             }
         System.out.println("============PAGO============");
-        System.out.println("Tarjeta");
+        System.out.println("Titular: " + Titular);
         System.out.println("Numero de tarjeta: **** **** **** " + ult4);
-        System.out.println("  Nombre: " + Titular);
-        System.out.print("  Vencimiento: " + Fecha);
-        System.out.println("  CVV: " + Cvv);
-        System.out.println("total cobrado: $" + PRECIO);
+        System.out.println("Nombre: " + Titular);
         System.out.println("============================");
         }
+        mostrarBoleto();
     }
+    public static void mostrarBoleto(){
+        System.out.println("===========DATOS BOLETO============");
+        System.out.print("Origen:" + ORIGEN + "- ");
+        System.out.print("Destino:" + DESTINO + "- ");
+        System.out.println("Clase:" + CLASE2 + "- ");
+        System.out.print("Vuelo:" + TIPOVUEL2 + "- ");
+        System.out.print("Boleto(s):" + TIPOBOL2);
+        System.out.println("");
+        for (int i = 0; i < numps; i++) {
+        // Muestra los datos del pasajero con su asiento correspondiente.
+        System.out.println("Pasajero #" + (i + 1));
+        System.out.println("Nombre: " + DATOS[i]);
+        System.out.println("Asiento: " + asiento[i]);
+    }
+        System.out.println("====================================");
+        
+    
+}
     //METHOD FOR USER5
     public static String correccionDatos(String mensaje){//THIS IS A METHOD TO ACESS USER5
         String usu;
