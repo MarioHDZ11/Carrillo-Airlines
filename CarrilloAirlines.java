@@ -35,7 +35,7 @@ public class CarrilloAirlines {
     
     //PASSAGERS DATA VARIABLES
     public static int numps;
-        //ARRAYS DATA PASSAGERS
+       //ARRAYS DATA PASSAGERS
     public static String[] DATOS = new String[4];
     public static String[] APELL;
     public static String[] NOMBR;
@@ -43,45 +43,45 @@ public class CarrilloAirlines {
     public static String TELEF;
     
     //SEAT ASSIGNAMENTS VARIABLES
-        //MATRIX OF SEATS
+        //MATRIX OF SEATS FIRSTCLASS
 public static String PRIMCLAS[][] = new String[2][20];
-    static{
+    static{ //ARRAYS GENERATED WITH TWO -FOR- LOOPS
         int asientosA = 1;
-        for(int i = 0; i < PRIMCLAS.length; i++){
-            for(int j = 0; j < PRIMCLAS[i].length; j++){ 
-                if(asientosA < 10){
+        for(int i = 0; i < PRIMCLAS.length; i++){ //GENERET -FOR- BOUCLE OF LENGTH OF SEATS IN i (X)
+            for(int j = 0; j < PRIMCLAS[i].length; j++){ //SEATS j (Y)
+                if(asientosA < 10){ //IF- For entries with a single digit, add a ZERO
                     PRIMCLAS[i][j] = "A0" + asientosA;
-                }else{
+                }else{ //ELSE- FOR ALL OTHER SEATS WITH MORE THAN ONE DIGIT
                     PRIMCLAS[i][j] = "A" + asientosA;
-                }
+                } //ADD MORE ONE TO THE SEAT TO REGISTER THE NEXT
                 asientosA++;
             }
         }
-    }
+    } //MATRIX OF SEATS EJECUTIVE
     public static String EJECUTIV[][] = new String[2][20];
-    static{
+    static{//ARRAYS GENERATED WITH TWO -FOR- LOOPS
         int asientosB = 1;
-        for(int i = 0; i < EJECUTIV.length; i++){
-            for(int j = 0; j < EJECUTIV[i].length; j++){ 
-                if (asientosB < 10) {
+        for(int i = 0; i < EJECUTIV.length; i++){//GENERET -FOR- BOUCLE OF LENGTH OF SEATS IN i (X)
+            for(int j = 0; j < EJECUTIV[i].length; j++){ //SEATS j (Y)
+                if (asientosB < 10) { //IF- For entries with a single digit, add a ZERO
                     EJECUTIV[i][j] = "B0" + asientosB;
-                }else{
+                }else{ //ELSE- FOR ALL OTHER SEATS WITH MORE THAN ONE DIGIT
                     EJECUTIV[i][j] = "B" + asientosB;
-                }
+                } //ADD MORE ONE TO THE SEAT TO REGISTER THE NEXT
                 asientosB++;
             }
         }
-    }
+    } //MATRIX OF SEATS tourist
     public static String TURISTA[][] = new String[2][30];
-        static{
+        static{//ARRAYS GENERATED WITH TWO -FOR- LOOPS
         int asientosC = 1;
-        for(int i = 0; i < TURISTA.length; i++){
-            for(int j = 0; j < TURISTA[i].length; j++){ 
-                if(asientosC < 10){
+        for(int i = 0; i < TURISTA.length; i++){//GENERET -FOR- BOUCLE OF LENGTH OF SEATS IN i (X)
+            for(int j = 0; j < TURISTA[i].length; j++){ //SEATS j (Y)
+                if(asientosC < 10){ //IF- For entries with a single digit, add a ZERO
                     TURISTA[i][j] = "C0" + asientosC;
-                }else{
+                }else{ //ELSE- FOR ALL OTHER SEATS WITH MORE THAN ONE DIGIT
                     TURISTA[i][j] = "C" + asientosC;
-                }
+                } //ADD MORE ONE TO THE SEAT TO REGISTER THE NEXT
                 asientosC++;
             }
         }
