@@ -369,23 +369,21 @@ public static String PRIMCLAS[][] = new String[2][20];
                     ciclo = 1;// SALIR DEL CICLO SI LOS DATOS SON CORRECTOS
                     //EXIT CYCLE IF THE DATA ARE CORRECT
                     if(i==numps){
-                        for(int j = 0; j <=1; j++){
-                            while(cicle == 0) {
-                                System.out.print("Capture el correo:" );
-                                EMAIL = cap.nextLine();
-                                System.out.print("Capture el Num telefonico:" );
-                                TELEF = cap.nextLine();
-                                System.out.println("SON CORRECTOS SUS DATOS? (SI/NO)");
-                                respuest = cap.nextLine();
-                                if((respuest.equals("SI"))||(respuest.equals("si"))||(respuest.equals("Si"))){
-                                    cicle = 1;
-                                }else if((respuest.equals("NO"))||(respuest.equals("no"))||(respuest.equals("No"))) {
-                                    System.out.println("VOLVAMOS A CAPTURAR SUS DATOS.");
-                                }else{ 
-                                    System.out.println("Respuesta no valida");
-                                }   
-                            }
-                        } 
+                        while(cicle == 0) {
+                            System.out.print("Capture el correo:" );
+                            EMAIL = cap.nextLine();
+                            System.out.print("Capture el Num telefonico:" );
+                            TELEF = cap.nextLine();
+                            System.out.println("SON CORRECTOS SUS DATOS? (SI/NO)");
+                            respuest = cap.nextLine();
+                            if((respuest.equals("SI"))||(respuest.equals("si"))||(respuest.equals("Si"))){
+                                cicle = 1;
+                            }else if((respuest.equals("NO"))||(respuest.equals("no"))||(respuest.equals("No"))) {
+                                System.out.println("VOLVAMOS A CAPTURAR SUS DATOS.");
+                            }else{ 
+                                System.out.println("Respuesta no valida");
+                            }   
+                        }
                     }
                 }else if((respuesta.equals("NO"))||(respuesta.equals("no"))||(respuesta.equals("No"))) {
                     System.out.println("VOLVAMOS A CAPTURAR SUS DATOS.");
