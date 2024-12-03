@@ -33,14 +33,20 @@ public class CarrilloAirlines {
         "Holanda", "Hungria", "India", "Indonesia", "Irlanda", 
         "Israel", "Italia", "Japon", "Brasil", "Mexico" };
     
-    //PASSAGERS DATA VARIABLES
+    //we start making statements
+    //Integer type variable declaration "Number passengers"
+    //string type variables email and phone number
     public static int numps;
-       //ARRAYS DATA PASSAGERS
+      //Statement of arrays
+    //Array one:  "DATA" with a size is four
+    //Array two: it's last name
+    //Array three: is name
     public static String[] DATOS = new String[4];
     public static String[] APELL;
     public static String[] NOMBR;
     public static String EMAIL;
     public static String TELEF;
+    //Now we move on to the method
     
     //SEAT ASSIGNAMENTS VARIABLES
         //MATRIX OF SEATS FIRSTCLASS
@@ -337,27 +343,36 @@ public static String PRIMCLAS[][] = new String[2][20];
     }
     
     //METHOD FOR USER2
-    public static String capturaDatos(String mensaje){//THIS IS A METHOD TO ACESS USER1
+    public static String capturaDatos(String mensaje){//THIS IS A METHOD TO ACESS USER2
         String respuesta, respuest;
         int ciclo = 0;
         int cicle = 0;
+        //We declare 4 other variables: responses and cycles
+        
         System.out.println(mensaje);
         System.out.println("USER2:==========================ROL:TOMAR DATOS DEL PASAJERO");
         System.out.println("Cuantos pasajeros viajaran?");
         numps=cap.nextInt();
         cap.nextLine();
+        //We capture the number of passengers
+        
         APELL = new String[numps +1];
         NOMBR = new String[numps +1];
-        
+        //Initialize the arrays in position 1
+
         while(ciclo == 0){
+        //The while repeats while cycle is equal to zero
+            
             for(int i = 1; i <= numps;i++) {
+        //This for will be repeated for the number of passengers
+
                 System.out.println("Capturando datos para pasajero #" + i);
                 System.out.print("Capture los Apellidos: ");
                 APELL[i] = cap.nextLine();
                 System.out.print("Capture Nombre/s: ");
                 NOMBR[i] = cap.nextLine();
-                // Mostrar los datos ingresados
-                //PRINT THE COLLECTED DATA
+         //The first and last name is captured and displayed on the screen
+                
                 System.out.println("SUS DATOS SON: ");
                 System.out.println("============REGISTRO============");
                 System.out.println("SUS APELLIDOS SON: " + APELL[i]);
@@ -365,10 +380,16 @@ public static String PRIMCLAS[][] = new String[2][20];
                 System.out.println("================================");
                 System.out.println("SON CORRECTOS SUS DATOS? (SI/NO)");
                 respuesta = cap.nextLine();
+          //Response one is captured
+                
                 if((respuesta.equals("SI"))||(respuesta.equals("si"))||(respuesta.equals("Si"))){
-                    ciclo = 1;// SALIR DEL CICLO SI LOS DATOS SON CORRECTOS
-                    //EXIT CYCLE IF THE DATA ARE CORRECT
+                    ciclo = 1;
+          //If the data is correct the cycle one ends
+          
                     if(i==numps){
+          //If the passenger's position is equal to the amount
+          //Capture email and phone number
+                        
                         while(cicle == 0) {
                             System.out.print("Capture el correo:" );
                             EMAIL = cap.nextLine();
@@ -376,15 +397,24 @@ public static String PRIMCLAS[][] = new String[2][20];
                             TELEF = cap.nextLine();
                             System.out.println("SON CORRECTOS SUS DATOS? (SI/NO)");
                             respuest = cap.nextLine();
+          //Response two is captured
+
                             if((respuest.equals("SI"))||(respuest.equals("si"))||(respuest.equals("Si"))){
                                 cicle = 1;
+         //If the data is correct the cycle two ends
+
+         //If you don't ask again
                             }else if((respuest.equals("NO"))||(respuest.equals("no"))||(respuest.equals("No"))) {
                                 System.out.println("VOLVAMOS A CAPTURAR SUS DATOS.");
                             }else{ 
+         //If it is not a valid answer, ask again
                                 System.out.println("Respuesta no valida");
                             }   
                         }
                     }
+
+          //If the data is not correct
+         //it requests it again without changing the passenger's position
                 }else if((respuesta.equals("NO"))||(respuesta.equals("no"))||(respuesta.equals("No"))) {
                     System.out.println("VOLVAMOS A CAPTURAR SUS DATOS.");
                     i--;
@@ -393,6 +423,8 @@ public static String PRIMCLAS[][] = new String[2][20];
                 }
             }
         }
+        //Finally, if the passenger selects 1, the captured data is displayed
+        //If not, it won't print them.
         System.out.println("Mostrar datos (Escriba 1)");
         System.out.println("Salir         (Cualquiera)");
         int resp = cap.nextInt();
