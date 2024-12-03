@@ -50,6 +50,30 @@ public class EVA4_CARILLO_AIRLINES1_EQUIPO1 {
     
     //SEAT ASSIGNAMENTS VARIABLES
         //MATRIX OF SEATS
+public static int DSPPClASS[][] = new int[1][20];
+static {
+for (int i = 0; i < DSPPClASS.length; i++) {
+    for (int j = 0; j < DSPPClASS[i].length; j++) {
+        DSPPClASS[i][j] = 1;
+    }
+}
+}
+public static int DSPEJEC[][] = new int[3][20];
+static {
+for (int i = 0; i < DSPEJEC.length; i++) {
+    for (int j = 0; j < DSPEJEC[i].length; j++) {
+        DSPEJEC[i][j] = 1;
+    }
+}
+}
+public static int DSPETUR[][] = new int[3][30];
+static {
+for (int i = 0; i < DSPETUR.length; i++) {
+    for (int j = 0; j < DSPETUR[i].length; j++) {
+        DSPETUR[i][j] = 1;
+    }
+}
+}
     public static String PRIMCLAS[][] = new String[1][20];
     static{
         int asientosA = 1;
@@ -100,6 +124,7 @@ public class EVA4_CARILLO_AIRLINES1_EQUIPO1 {
     public static String TITULAR;
     public static String NumeroT;
     public static String Cvv;
+    public static int datosComp = 0;
             
     public static void main(String[] args) {
         //declare start menu
@@ -406,7 +431,7 @@ public class EVA4_CARILLO_AIRLINES1_EQUIPO1 {
     //METHOD FOR USER3
     public static String asignacionAsientos(String mensaje){
         System.out.println(mensaje);
-        System.out.println("USER4:=================================ROL:Tomar asientos del pasajero");
+        System.out.println("USER3:=================================ROL:Tomar asientos del pasajero");
         if(CLASE==1){//DEPENDING ON THE CLASS THAT WAS INITIALLY CHOSEN, 
                      //THE MATRIX OF THE SEATS AVAILABLE FOR THAT CLASS IS SHOWN
             primeraClase();
@@ -417,14 +442,7 @@ public class EVA4_CARILLO_AIRLINES1_EQUIPO1 {
         if(CLASE==3){
             claseTurista();
         }
-        System.out.println("Mostrar datos (Escriba 1)");
-        System.out.println("Salir         (Cualquiera)");
-        int resp = cap.nextInt();
-        cap.nextLine();
-        if(resp == 1){
-            //
-        }else{ 
-        }
+        datosComp = 1;
         return mensaje;
     }
     
@@ -432,8 +450,11 @@ public class EVA4_CARILLO_AIRLINES1_EQUIPO1 {
         System.out.println("Los asientos para primera clase son:");//THIS IS A MATRIX FOR SHOW AVAILABLE SEATS FOR EACH CLASS
         for(int i = 0; i < PRIMCLAS.length; i++){
             for(int j = 0; j < PRIMCLAS[i].length; j++){
-                System.out.print("["+PRIMCLAS[i][j] + "]");
-                // Line break every 10 items to show seats
+                if(DSPPClASS[i][j] == 1){ // Line break every 10 items to show seats
+                System.out.print("[" + PRIMCLAS[i][j] + "]");
+                }else{
+                    System.out.print("[XX]"); 
+                }
                 if ((j + 1) % 10 == 0) {
                     System.out.println();
                 }
@@ -441,12 +462,45 @@ public class EVA4_CARILLO_AIRLINES1_EQUIPO1 {
             System.out.println(); // Line break between rows of the matrix
         }
         asiento = new String[numps];
-        for(int numasi = 0; numasi < numps; numasi++){
-            while(true){
-                System.out.println("Capture asiento para pasajero #" + (numasi + 1));//CAPTURE THE SEATS IN ONE ARRANGEMENT
-                asiento[numasi] = cap.nextLine();
-                System.out.println("El asiento seleccionado para el pasajero #" + (numasi + 1) + " fue: " + asiento[numasi]);
-                break;
+        for (int i = 0; i < numps; i++) {
+            while (true) {
+                System.out.println("Capture asiento para pasajero #" + (i + 1));
+                String asientoSelec = cap.nextLine();
+                int encontrado = 0;
+                for (int j = 0; j < PRIMCLAS.length; j++) {
+                    for (int k = 0; k < PRIMCLAS[j].length; k++) {
+                        if (PRIMCLAS[j][k] != null && PRIMCLAS[j][k].equals(asientoSelec) && DSPPClASS[j][k] == 1) {
+                            asiento[i] = asientoSelec;
+                            DSPPClASS[j][k] = 0; 
+                            encontrado = 1;
+                            break;
+                        }
+                    }
+                    if(encontrado == 1){
+                        break;
+                    }
+                }
+                if(encontrado == 1){
+                    System.out.println("Asiento asignado exitosamente: " + asiento[i]);
+                    break;
+                }else{
+                    System.out.println("Asiento no disponible o inexistente. Intente de nuevo.");
+                }
+            }
+        }
+        System.out.println("Mostrar Asientos (Escriba 1)");
+        System.out.println("Salir            (Cualquiera)");
+        int resp = cap.nextInt();
+        cap.nextLine();
+        if(resp == 1){
+            for (int i = 0; i < PRIMCLAS.length; i++) {
+                for (int j = 0; j < PRIMCLAS[i].length; j++) {
+                    System.out.print("[" + PRIMCLAS[i][j] + "]");
+                    if ((j + 1) % 10 == 0) {
+                        System.out.println();
+                    }
+                }
+                System.out.println();   
             }
         }
     }
@@ -454,8 +508,11 @@ public class EVA4_CARILLO_AIRLINES1_EQUIPO1 {
     public static void claseEjecutiv(){
         for (int i = 0; i < EJECUTIV.length; i++) {
             for (int j = 0; j < EJECUTIV[i].length; j++) {
-                System.out.print("["+EJECUTIV[i][j] + "]");
-                // Line break every 10 items to show seats
+                if(DSPEJEC[i][j] == 1){ // Line break every 10 items to show seats
+                System.out.print("[" + EJECUTIV[i][j] + "]");
+                }else{
+                    System.out.print("[XX]"); 
+                }
                 if ((j + 1) % 10 == 0) {
                     System.out.println();
                 }
@@ -463,12 +520,45 @@ public class EVA4_CARILLO_AIRLINES1_EQUIPO1 {
             System.out.println(); // Line break between rows of the matrix
         }
         asiento = new String[numps];
-        for (int numasi = 0; numasi < numps; numasi++) {
+        for (int i = 0; i < numps; i++) {
             while (true) {
-                System.out.println("Capture asiento para pasajero #" + (numasi + 1));
-                asiento[numasi] = cap.nextLine();
-                System.out.println("El asiento seleccionado para el pasajero #" + (numasi + 1) + " fue: " + asiento[numasi]);
-                break;
+                System.out.println("Capture asiento para pasajero #" + (i + 1));
+                String asientoSelec = cap.nextLine();
+                int encontrado = 0;
+                for (int j = 0; j < EJECUTIV.length; j++) {
+                    for (int k = 0; k < EJECUTIV[j].length; k++) {
+                        if (EJECUTIV[j][k] != null && EJECUTIV[j][k].equals(asientoSelec) && DSPEJEC[j][k] == 1) {
+                            asiento[i] = asientoSelec;
+                            DSPEJEC[j][k] = 0; 
+                            encontrado = 1;
+                            break;
+                        }
+                    }
+                    if(encontrado == 1){
+                        break;
+                    }
+                }
+                if(encontrado == 1){
+                    System.out.println("Asiento asignado exitosamente: " + asiento[i]);
+                    break;
+                }else{
+                    System.out.println("Asiento no disponible o inexistente. Intente de nuevo.");
+                }
+            }
+        }
+        System.out.println("Mostrar Asientos (Escriba 1)");
+        System.out.println("Salir            (Cualquiera)");
+        int resp = cap.nextInt();
+        cap.nextLine();
+        if(resp == 1){
+            for (int i = 0; i < EJECUTIV.length; i++) {
+                for (int j = 0; j < EJECUTIV[i].length; j++) {
+                    System.out.print("[" + EJECUTIV[i][j] + "]");
+                    if ((j + 1) % 10 == 0) {
+                        System.out.println();
+                    }
+                }
+                System.out.println();   
             }
         }
     }
@@ -476,20 +566,57 @@ public class EVA4_CARILLO_AIRLINES1_EQUIPO1 {
     public static void claseTurista(){
         for (int i = 0; i < TURISTA.length; i++) {
             for (int j = 0; j < TURISTA[i].length; j++) {
-                System.out.print("["+TURISTA[i][j] + "]");
-                // Line break every 10 items to show seats
+                if(DSPETUR[i][j] == 1){ // Line break every 10 items to show seats
+                System.out.print("[" + TURISTA[i][j] + "]");
+                }else{
+                    System.out.print("[XX]"); 
+                }
                 if ((j + 1) % 10 == 0) {
                     System.out.println();
                 }
             }
             System.out.println(); // Line break between rows of the matrix
-        }asiento = new String[numps];
-        for (int numasi = 0; numasi < numps; numasi++) {
+        }
+        asiento = new String[numps];
+        for (int i = 0; i < numps; i++) {
             while (true) {
-                System.out.println("Capture asiento para pasajero #" + (numasi + 1));
-                asiento[numasi] = cap.nextLine();
-                System.out.println("El asiento seleccionado para el pasajero #" + (numasi + 1) + " fue: " + asiento[numasi]);
-                break;
+                System.out.println("Capture asiento para pasajero #" + (i + 1));
+                String asientoSelec = cap.nextLine();
+                int encontrado = 0;
+                for (int j = 0; j < TURISTA.length; j++) {
+                    for (int k = 0; k < TURISTA[j].length; k++) {
+                        if (TURISTA[j][k] != null && TURISTA[j][k].equals(asientoSelec) && DSPETUR[j][k] == 1) {
+                            asiento[i] = asientoSelec;
+                            DSPETUR[j][k] = 0; 
+                            encontrado = 1;
+                            break;
+                        }
+                    }
+                    if(encontrado == 1){
+                        break;
+                    }
+                }
+                if(encontrado == 1){
+                    System.out.println("Asiento asignado exitosamente: " + asiento[i]);
+                    break;
+                }else{
+                    System.out.println("Asiento no disponible o inexistente. Intente de nuevo.");
+                }
+            }
+        }
+        System.out.println("Mostrar Asientos (Escriba 1)");
+        System.out.println("Salir            (Cualquiera)");
+        int resp = cap.nextInt();
+        cap.nextLine();
+        if(resp == 1){
+            for (int i = 0; i < TURISTA.length; i++) {
+                for (int j = 0; j < TURISTA[i].length; j++) {
+                    System.out.print("[" + TURISTA[i][j] + "]");
+                    if ((j + 1) % 10 == 0) {
+                        System.out.println();
+                    }
+                }
+                System.out.println();   
             }
         }
     }
@@ -569,12 +696,15 @@ public class EVA4_CARILLO_AIRLINES1_EQUIPO1 {
         System.out.print("Vuelo:" + TIPOVUEL2 + "- ");
         System.out.print("Boleto(s):" + TIPOBOL2);
         System.out.println("");
-        for (int i = 0; i < numps; i++) {
-            System.out.println("Pasajero # " + (i + 1));
-            System.out.println("Nombre: " +  NOMBR[1+i] + " " + APELL[1+1]);
-            System.out.println("Asiento: " + asiento[i]);
+        
+            for (int i = 0; i < numps; i++) {
+                System.out.println("Pasajero # " + (i + 1));
+                System.out.println("Nombre: " +  NOMBR[1+i] + " " + APELL[1+i]);
+                if(datosComp == 1){
+                System.out.println("Asiento: " + asiento[i]);
+            }
+            System.out.println("====================================");
         }
-        System.out.println("====================================");
     }
     
     //METHOD FOR USER5
