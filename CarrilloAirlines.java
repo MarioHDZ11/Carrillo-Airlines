@@ -8,7 +8,7 @@ public class CarrilloAirlines {
     //GENERATE A GLOBAL SCANNER
     public final static Scanner cap = new Scanner(System.in);
     
-    //DESTINE VARIABLES 
+    //DESTINE VARIABLES  (USER1)
     public static String DESTINO;
     public static String ORIGEN;
     public static int CLASE; 
@@ -33,7 +33,7 @@ public class CarrilloAirlines {
         "Holanda", "Hungria", "India", "Indonesia", "Irlanda", 
         "Israel", "Italia", "Japon", "Brasil", "Mexico" };
     
-    //we start making statements
+    //we start making statements (USER2)
     //Integer type variable declaration "Number passengers"
     //string type variables email and phone number
     public static int numps;
@@ -48,7 +48,7 @@ public class CarrilloAirlines {
     public static String TELEF;
     //Now we move on to the method
     
-    //SEAT ASSIGNAMENTS VARIABLES
+    //SEAT ASSIGNAMENTS VARIABLES (USER3)
         //MATRIX OF SEATS FIRSTCLASS
 public static String PRIMCLAS[][] = new String[2][20];
     static{ //ARRAYS GENERATED WITH TWO -FOR- LOOPS
@@ -94,13 +94,14 @@ public static String PRIMCLAS[][] = new String[2][20];
     }
     public static String[] asiento;
         
-    //PAYMENT VARIABLES
+    //PAYMENT VARIABLES (USER4)
     public static double PRECIOCLASE1 = 2000,PRECIOCLASE2=1000,PRECIOCLASE3=500;//FIXED PRICE FOR EACH CLASS
     public static String ULT4 = "";
     public static String TITULAR;
     public static String NumeroT;
     public static String Cvv;
     public static int datosComp = 0;
+    //VARIABLE OF TICKET COMPLETE
     public static int boletoComp = 0;
             
     public static void main(String[] args) {
@@ -109,40 +110,41 @@ public static String PRIMCLAS[][] = new String[2][20];
         
         System.out.println("============================BIENVENIDO A CARRILLO AIRLINES============================");
 
-        int k = -1;
-        while((k<0) || (k>1)){
+        int k = -1; //Deaclare ANY NUMBER THAT IS NOT 1 AND 0
+        while((k<0) || (k>1)){ //The while loop sets the only 2 numbers which are 1 and 0
             System.out.println("");
             System.out.println("Iniciar (Presione 1)");
             System.out.println("");
             System.out.println("Salir   (Presione 0)");
-            inicio = cap.nextInt();
-            cap.nextLine();
-            switch(inicio){
-                case 1:
-                    k=1;
+            inicio = cap.nextInt(); //CAPTURE THE NUMBER FOR ENTER OF EXIT THE CODE
+            cap.nextLine(); //CHANGE THE INICIO VARIABLE 
+            switch(inicio){ //DEPENDS ON THE NUMBER ASSIGNED TO YOU, CHOOSE AN OPTION
+                case 1: 
+                    k=1; //CHANGE TO NUMBER 1 (START)
                     break;
                 case 0:
-                    k=0;
+                    k=0; //CHANGE TO NUMBER 2 (EXIT)
                     break;  
-                default:
+                default: //IF THE CAPTURE DOES NOT MATCH THE CORRESPONDING NUMBERS, REPEAT THE QUESTION
                     System.out.println("NUMERO INVALIDO");
-                    break;
+                    break;  
             }
         }
         String capusu,cappws;
         //DECLARE TO CAPTURE USERNAME AND PASSWORD
         //START A LOOP TO ASK FOR USERNAME AND PASSWORD
         //YOU HAVE THREE ATTEMPTS TO ENTER EACH DATA CORRECTLY
-        while(k==1){
+        while(k==1){ //IF K WAS DECLARED AS 1 IN THE PREVIOUS CYCLE. THE PROGRAM STARTS
             System.out.println("=======================================USUARIOS=======================================");
             System.out.println("MOSTRAR LISTA DE USUARIOS   (Escriba 3)");
             System.out.println("MOSTRAR BOLETO/S            (Escriba 4)");
             System.out.println("IMPRIMIR BOLETO/S           (Escriba 5)");
+            System.out.println("SALIR                       (Escriba 0)");
             System.out.println("");
             System.out.println("USUARIO:");//CAPTURE USER
             capusu=cap.nextLine();
-            if(!(capusu.equals("3"))&&!(capusu.equals("4"))&&!(capusu.equals("5"))){
-                System.out.println("CONTRASEÑA:");//CAPTURE PASSWORD
+            if(!(capusu.equals("3"))&&!(capusu.equals("4"))&&!(capusu.equals("5"))&&!(capusu.equals("0")){ //EVALUATE THAT THE FIRST DATA CAPTURED IS NOT EQUAL TO 3, 4, 5, 0
+                System.out.println("CONTRASEÑA:");//CAPTURE PASSWORD AFTER USER IS ANYTHING OTHER THAN 3, 4, 5 and 0
                 cappws=cap.nextLine();
                 
                 if(capusu.equals("USER1")&&cappws.equals("1234")) {         //EVALUATE THE INPUT TO VALIDATE IF IT IS CORRECT
@@ -155,10 +157,12 @@ public static String PRIMCLAS[][] = new String[2][20];
                     capturaDatosCobro("BIENVENIDO!!");
                 }else if(capusu.equals("USER5")&&cappws.equals("1234")) {
                     correccionDatos("BIENVENIDO!!");
-                    break;
-                }else{
+                }else{ //SI LAS 2 CAPTURAS NO SON IGUALES A UN DATO ASIGNADO
                     System.out.println("ACESSO DENEGADO");
                 }
+            }else if(capusu.equals("0")) {
+                System.out.println("Ah Salido del sistema CARRILLO AIRLINES");
+                break;
             }else if(capusu.equals("3")) {
                 mostrarUSU();
             }else if(capusu.equals("4")){
@@ -696,7 +700,7 @@ public static String PRIMCLAS[][] = new String[2][20];
         System.out.println("Tomar los datos---------------->USER2");
         System.out.println("Tomar los asientos------------->USER3");
         System.out.println("Tomar el metodo de pago-------->USER4");
-        usu=cap.nextLine();
+        usu=cap.nextLine();  //THIS CODE MAKES USER 5 ACCESS TO OTHERS WITHOUT THE NEED FOR PASSWORDS
                     if(usu.equals("USER1")){
                        eleccionDestino("");
                     }else if(usu.equals("USER2")){
