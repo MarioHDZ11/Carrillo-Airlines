@@ -160,15 +160,15 @@ public static String PRIMCLAS[][] = new String[2][20];
                 }else{ //SI LAS 2 CAPTURAS NO SON IGUALES A UN DATO ASIGNADO
                     System.out.println("ACESSO DENEGADO");
                 }
-            }else if(capusu.equals("0")) {
+            }else if(capusu.equals("0")) { //EVALUATE THAT THE FIRST DATA CAPTURED IS 0 BREAK THE SYSTEM.
                 System.out.println("Ah Salido del sistema CARRILLO AIRLINES");
                 break;
-            }else if(capusu.equals("3")) {
-                mostrarUSU();
-            }else if(capusu.equals("4")){
-                mostrarBoleto();
-            }else{
-                imprimirBoleto();
+            }else if(capusu.equals("3")) { //EVALUATE THAT THE FIRST DATA CAPTURED IS 3 
+                mostrarUSU();                            //SHOWS THE LIST OF USERS
+            }else if(capusu.equals("4")){ //EVALUATE THAT THE FIRST DATA CAPTURED IS 4
+                mostrarBoleto();                        //SHOWS THE TICKET DEPENDING ON THE CAPTURE PROGRESS
+            }else{ //EVALUATE THAT THE FIRST DATA CAPTURED IS 5
+                imprimirBoleto();                      //PRINT THE COMPLETE TICKET ONLY IF ALL DATA WAS ALREADY CAPTURED
             }
         }
     }
@@ -178,7 +178,7 @@ public static String PRIMCLAS[][] = new String[2][20];
         System.out.println(mensaje);
         System.out.println("USER1:=================================ROL:Tomar el viaje del pasajero");
         ORIGEN = tomarLugOrg("Lugar de origen: ");
-        int ciclo = 0;
+        int ciclo = 0; //A VARIABLE IS CREATED TO START THE LOOP
         while(ciclo == 0){
             DESTINO = tomarDestino("A que destino se dirige el pasajero?");
             if(!(DESTINO.equals(ORIGEN))){
